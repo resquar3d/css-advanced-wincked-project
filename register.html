@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign Up - Wincked Date</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+</head>
+<body>
+  <header class="top-nav">
+    <h1 class="logo">Wincked</h1>
+    <nav class="nav-menu">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="people.html">People</a></li>
+        <li><a href="register.html">Register</a></li>
+        <li><a href="#login-modal">Login</a></li>
+        <li><a href="review.html">Reviews</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main>
+    <div class="hero-text">
+      <h2>Wincked Date</h2>
+      <p>💗 Register / Signup to find the perfect match suited for you!</p>
+    </div>
+    <div class="form-container">
+      <form>
+        <label for="name">Name :</label>
+        <input type="text" placeholder="Name" id="name" name="name" required>
+
+        <label for="name">Username :</label>
+        <input type="text" placeholder="Prefered Username" id="name" name="name" required>
+
+        <label for="email">Email :</label>
+        <input type="email" placeholder="Email Address" id="email" name="email" required>
+
+        <label for="password">Password :</label>
+        <input type="password" placeholder="Password" id="password" name="password" required>
+
+        <label>Gender :</label>
+        <div class="radio-group">
+          <label><input type="radio" name="gender" value="male"> Male</label>
+          <label><input type="radio" name="gender" value="female"> Female</label>
+          <label><input type="radio" name="gender" value="other"> Other</label>
+          <label><input type="checkbox" name="gender_detail" value="nonbinary"> Non-binary / Other</label>
+        </div>
+
+        <label>Status :</label>
+        <div class="radio-group">
+          <label><input type="radio" name="status" value="single"> Single</label>
+          <label><input type="radio" name="status" value="divorced"> Divorced</label>
+          <label><input type="radio" name="status" value="separated"> Separated</label>
+        </div>
+
+        <label>Looking For :</label>
+        <div class="radio-group">
+          <label><input type="radio" name="match_status" value="single"> Single</label>
+          <label><input type="radio" name="match_status" value="divorced"> Divorced</label>
+          <label><input type="radio" name="match_status" value="widow"> Widow</label>
+          <label><input type="radio" name="match_status" value="widower"> Widower</label>
+        </div>
+
+        <label>Do you have a pet?</label>
+      <div class="radio-group">
+        <label><input type="radio" name="pet" value="yes"> Yes</label>
+        <label><input type="radio" name="pet" value="no"> No</label>
+      </div>
+
+      <label>Do you have children?</label>
+      <div class="radio-group">
+        <label><input type="checkbox" name="children" value="with"> Yes </label>
+        <label><input type="checkbox" name="children" value="without"> No </label>
+      </div>
+
+      <label for="num-children">Children :</label>
+      <select id="num-children" name="num-children">
+        <option value="0">0</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5+">5+</option>
+      </select>
+
+        <button type="submit">Register</button>
+      </form>
+    </div>
+  </main>
+  <footer>
+    <p>© 2025 by R.E Espino – Student, Winc-winc Academy. All rights reserved.</p>
+    <div class="social-icons">
+      <a href="#">Facebook</a>
+      <a href="#">Twitter</a>
+      <a href="#">Instagram</a>
+    </div>
+  </footer>
+
+  <!-- Login Modal -->
+  <div id="login-modal" class="modal">
+    <div class="modal-content">
+      <a href="#" class="close-btn">&times;</a>
+      <h2>Login to Wincked</h2>
+      <form>
+        <label for="login-email">Email</label>
+        <input type="email" id="login-email" name="login-email" required>
+
+        <label for="login-password">Password</label>
+        <input type="password" id="login-password" name="login-password" required>
+
+        <button type="submit">Log In</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="login.js"></script>
+</body>
+</html>
