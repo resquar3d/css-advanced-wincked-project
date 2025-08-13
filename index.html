@@ -1,46 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Wincked Date</title>
-<!-- CSS Styling -->
   <link rel="stylesheet" href="styles.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <script type="module" src="matchFinder.js" defer></script> <!-- CSS Styling -->
 </head>
 <body>
-  <header class="top-nav">
-    <h1 class="logo">Wincked</h1>
+  <!-- Header uses container queries in styles.css; base = mobile burger -->
+  <header class="top-nav site-header">
+    <div class="navbar-inner" role="navigation" aria-label="Primary">
+      <h1 class="logo">Wincked</h1>
 
-      <!-- Burger Menu Button -->
-    <div class="burger" onclick="this.classList.toggle('active'); document.querySelector('.nav-menu').classList.toggle('active')">
-      <div></div>
-      <div></div>
-      <div></div>
+      <!-- Burger (mobile baseline) -->
+      <button class="burger" aria-label="Toggle menu" aria-controls="primary-nav" aria-expanded="false">
+        <div></div>
+        <div></div>
+        <div></div>
+      </button>
+
+      <nav id="primary-nav" class="nav-menu">
+        <ul class="nav-list">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="people.html">People</a></li>
+          <li><a href="register.html">Register</a></li>
+          <li><a href="#login-modal">Login</a></li>
+          <li><a href="review.html">Reviews</a></li>
+        </ul>
+      </nav>
     </div>
-      
-    <nav class="nav-menu">
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="people.html">People</a></li>
-        <li><a href="register.html">Register</a></li>
-        <li><a href="#login-modal">Login</a></li>
-        <li><a href="review.html">Reviews</a></li>
-      </ul>
-    </nav>
   </header>
   <main>
-      <div class="hero-text">
-        <h2>Wincked Date</h2>
-        <p>💗 Find the perfect match person suited for you!</p>
-      </div>
+    <div class="hero-text">
+      <h2>Wincked Date</h2>
+      <p>💗 Find the perfect match person suited for you!</p>
     </div>
 
     <section class="section">
       <div class="cta-box">
         <h3>Find your dream Date here!</h3>
-        <p>Check out the registered users on our site.<br> Register to find a match, fill up the form below. ⬇️</p>
+        <p>
+          Check out the registered users on our site.<br />
+          Register to find a match, fill up the form below. ⬇️
+        </p>
         <a href="register.html">Click Me</a>
       </div>
       <div class="people-box">
@@ -62,43 +66,58 @@
     </section>
   </main>
 
-    <!-- Login Modal -->
-  <div id="login-modal" class="modal">
+  <!-- Login Modal (CSS :target compatible) -->
+  <div id="login-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="login-title">
     <div class="modal-content">
-      <a href="#" class="close-btn">&times;</a>
-      <h2>Login</h2>
+      <a href="#" class="close-btn" aria-label="Close">&times;</a>
+      <h2 id="login-title">Login to Wincked</h2>
       <form>
-        <input type="text" placeholder="Username" required>
-        <input type="password" placeholder="Password" required>
-        <button type="submit">Login</button>
+        <label for="login-username">Username</label>
+        <input type="text" id="login-username" name="login-username" required />
+
+        <label for="login-password">Password</label>
+        <input type="password" id="login-password" name="login-password" required />
+
+        <button type="submit">Log In</button>
       </form>
     </div>
   </div>
 
   <!-- Reviews Modal -->
-  <div id="reviews-modal" class="modal">
+  <div id="reviews-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="reviews-title">
     <div class="modal-content">
-      <a href="#" class="close-btn">&times;</a>
-      <h2>User Reviews</h2>
+      <a href="#" class="close-btn" aria-label="Close">&times;</a>
+      <h2 id="reviews-title">User Reviews</h2>
       <p>“Amazing experience! Found my match within days.” - Jamie</p>
       <p>“Fun, easy to use, and real people!” - Alex</p>
     </div>
   </div>
 
-
   <footer>
     <p>© 2025 by R.E Espino – Student, Winc-winc Academy. All rights reserved.</p>
     <div class="social-icons">
-      <a href="https://www.facebook.com/reespino"><i class="fab fa-facebook"></i></a>
-      <a href="https://www.instagram.com/resquar3d"><i class="fab fa-instagram"></i></a>
-      <a href="https://x.com/resquar3d"><i class="fab fa-x-twitter"></i></a>
-      <a href="https://www.linkedin.com/in/reespino"><i class="fab fa-linkedin-in"></i></a>
-      <a href="https://www.youtube.com/@resquar3d534"><i class="fab fa-youtube"></i></a>
-      <a href="https://github.com/resquar3d"><i class="fa-brands fa-github"></i></a>
-      <a href="https://www.tiktok.com/@resquar3d"><i class="fab fa-tiktok"></i></a>
+      <a href="https://www.facebook.com/reespino" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+      <a href="https://www.instagram.com/resquar3d" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+      <a href="https://x.com/resquar3d" aria-label="X (formerly Twitter)"><i class="fab fa-x-twitter"></i></a>
+      <a href="https://www.linkedin.com/in/reespino" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+      <a href="https://www.youtube.com/@resquar3d534" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+      <a href="https://github.com/resquar3d" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+      <a href="https://www.tiktok.com/@resquar3d" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
     </div>
   </footer>
 
+  <script>
+    // Mobile-first burger toggle (progressive enhancement)
+    const burger = document.querySelector('.burger');
+    const nav = document.querySelector('#primary-nav');
+    if (burger && nav) {
+      burger.addEventListener('click', () => {
+        burger.classList.toggle('active');
+        const open = nav.classList.toggle('active');
+        burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+    }
+  </script>
   <script src="login.js"></script>
 </body>
 </html>
