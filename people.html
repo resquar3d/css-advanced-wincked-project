@@ -3,31 +3,83 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>People - Winc-winc</title>
+  <title>Wincked Date</title>
   <link rel="stylesheet" href="styles.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
+<script defer>
+  document.addEventListener('DOMContentLoaded', () => {
+    const query = new URLSearchParams(window.location.search);
+    const minAge = parseInt(query.get('age')) || 0;
+    const gender = query.get('gender');
+    const location = query.get('location');
+
+    const ageSlider = document.getElementById('age-range');
+    const genderInputs = document.querySelectorAll('input[name="gender"]');
+    const photoCheckbox = document.querySelector('input[type="checkbox"]');
+
+    function applyFilters() {
+      const ageValue = parseInt(ageSlider.value);
+      const selectedGender = [...genderInputs].find(i => i.checked)?.value || '';
+      const photosOnly = photoCheckbox.checked;
+
+      const profiles = document.querySelectorAll('.profile-card');
+
+      profiles.forEach(profile => {
+        const profileAge = parseInt(profile.dataset.age);
+        const profileGender = profile.dataset.gender;
+        const profileLocation = profile.dataset.location;
+        const hasPhoto = !!profile.querySelector('img')?.getAttribute('src');
+
+        let visible = true;
+        if (profileAge < ageValue) visible = false;
+        if (selectedGender && profileGender !== selectedGender) visible = false;
+        if (photosOnly && !hasPhoto) visible = false;
+
+        profile.style.display = visible ? 'block' : 'none';
+      });
+    }
+
+    if (minAge || gender || location) {
+      ageSlider.value = minAge || 18;
+      if (gender) {
+        const match = [...genderInputs].find(i => i.value === gender);
+        if (match) match.checked = true;
+      }
+    }
+
+    applyFilters();
+
+    ageSlider.addEventListener('input', applyFilters);
+    genderInputs.forEach(input => input.addEventListener('change', applyFilters));
+    photoCheckbox.addEventListener('change', applyFilters);
+  });
+</script>
 </head>
 <body>
-  <header class="top-nav">
-    <h1 class="logo">Wincked</h1>
+  <!-- Header uses container queries in styles.css; base = mobile burger -->
+  <header class="top-nav site-header">
+    <div class="navbar-inner" role="navigation" aria-label="Primary">
+      <h1 class="logo">Wincked</h1>
 
-      <!-- Burger Menu Button -->
-    <div class="burger" onclick="this.classList.toggle('active'); document.querySelector('.nav-menu').classList.toggle('active')">
-      <div></div>
-      <div></div>
-      <div></div>
+      <!-- Burger (mobile baseline) -->
+      <button class="burger" aria-label="Toggle menu" aria-controls="primary-nav" aria-expanded="false">
+        <div></div>
+        <div></div>
+        <div></div>
+      </button>
+
+      <nav id="primary-nav" class="nav-menu">
+        <ul class="nav-list">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="people.html">People</a></li>
+          <li><a href="register.html">Register</a></li>
+          <li><a href="#login-modal">Login</a></li>
+          <li><a href="review.html">Reviews</a></li>
+        </ul>
+      </nav>
     </div>
-        
-    <nav class="nav-menu">
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="people.html">People</a></li>
-        <li><a href="register.html">Register</a></li>
-        <li><a href="#login-modal">Login</a></li>
-        <li><a href="review.html">Reviews</a></li>
-      </ul>
-    </nav>
   </header>
   <main class="page-layout">
     <aside class="filter-panel">
@@ -40,67 +92,38 @@
         <label><input type="checkbox">With Photos</label>
       </div>
       <div class="filter-group">
-        <label><input type="radio" name="gender"> Man</label><br>
-        <label><input type="radio" name="gender"> Woman</label>
+        <label><input type="radio" name="gender" value="M"> Male</label><br>
+        <label><input type="radio" name="gender" value="F"> Female</label><br>
+        <label><input type="radio" name="gender" value="X"> Others</label>
       </div>
     </aside>
-    <section class="profiles-section">      
+    <section class="profiles-section">
       <div class="hero-text">
-        <h2>Wincked Date</h2>
+        <h2>Winck A Date</h2>
         <p>💗 Find the perfect match person suited for you!</p>
+        <h2>Registered Members</h2>
       </div>
-      <h2>Registered Members</h2>
-      <div class="profiles-grid">
-        <a href="#profile-1" class="profile-card online"><img src="/Images/Devine001.jpg" alt="User 1"><h3>Alice, 28</h3></a>
-        <a href="#profile-2" class="profile-card offline"><img src="/Images/Feel the Harmony.jpg" alt="User 2"><h3>Ben, 30</h3></a>
-        <a href="#profile-3" class="profile-card online"><img src="/Images/DALL·E 2025-01-28 20.10.18 - A full-body shot of an exquisite portrait of a delicate young woman with amber hazel eyes, wearing an extravagant outfit with intricate patterns and a.webp" alt="User 3"><h3>Chloe, 25</h3></a>
-        <a href="#profile-4" class="profile-card offline"><img src="/Images/Feel the Harmony3.jpg" alt="User 4"><h3>Daniel, 32</h3></a>
-        <a href="#profile-5" class="profile-card online"><img src="/Images/DALL·E 2025-01-31 21.37.42 - An extreme close-up, shoulder-level shot of an enchanting young female depicted in a cosmetic pen color ink calligraphy pinstripes art style. The mini.webp" alt="User 5"><h3>Eva, 27</h3></a>
-        <a href="#profile-6" class="profile-card offline"><img src="/Image/profile6.jpg" alt="User 6"><h3>Felix, 35</h3></a>
-        <a href="#profile-7" class="profile-card online"><img src="/Images/ChatGPT Image 11 mei 2025, 00_16_51.png" alt="User 7"><h3>Grace, 29</h3></a>
-        <a href="#profile-8" class="profile-card offline"><img src="/Image/profile8.jpg" alt="User 8"><h3>Harry, 31</h3></a>
-        <a href="#profile-9" class="profile-card online"><img src="/Images/Minimalistic.jpg" alt="User 9"><h3>Isla, 26</h3></a>
-        <a href="#profile-10" class="profile-card offline"><img src="/Image/profile10.jpg" alt="User 10"><h3>Jack, 34</h3></a>
-        <a href="#profile-11" class="profile-card online"><img src="/Images/ChatGPT Image 6 mei 2025, 20_43_05.png" alt="User 11"><h3>Karen, 33</h3></a>
-        <a href="#profile-12" class="profile-card offline"><img src="/Images/Look At Me in brass.jpg" alt="User 12"><h3>Leo, 36</h3></a>
-        <a href="#profile-13" class="profile-card online"><img src="/Image/profile13.jpg" alt="User 13"><h3>Mia, 24</h3></a>
-        <a href="#profile-14" class="profile-card offline"><img src="/Image/profile14.jpg" alt="User 14"><h3>Nick, 38</h3></a>
-        <a href="#profile-15" class="profile-card online"><img src="/Images/ChatGPT Image 11 mei 2025, 11_18_19.png" alt="User 15"><h3>Olivia, 27</h3></a>
-        <a href="#profile-16" class="profile-card offline"><img src="/Images/Split Persona in Brass.jpg" alt="User 16"><h3>Paul, 37</h3></a>
-      </div>
+      <div class="profiles-grid"></div>
     </section>
   </main>
 
-  <!-- Profile Modals -->
-  <div id="profile-1" class="modal"><div class="modal-content"><a href="#" class="close-btn">&times;</a><h2>Alice, 28</h2><p>Loves books and wine tastings.</p></div></div>
-  <div id="profile-2" class="modal"><div class="modal-content"><a href="#" class="close-btn">&times;</a><h2>Ben, 30</h2><p>Passionate about hiking and photography.</p></div></div>
-  <div id="profile-3" class="modal"><div class="modal-content"><a href="#" class="close-btn">&times;</a><h2>Chloe, 25</h2><p>Always laughing. Coffee enthusiast.</p></div></div>
-  <div id="profile-4" class="modal"><div class="modal-content"><a href="#" class="close-btn">&times;</a><h2>Daniel, 32</h2><p>Coder by day, guitarist by night.</p></div></div>
-  <div id="profile-5" class="modal"><div class="modal-content"><a href="#" class="close-btn">&times;</a><h2>Eva, 27</h2><p>Adventurous spirit and a foodie.</p></div></div>
-  <div id="profile-6" class="modal"><div class="modal-content"><a href="#" class="close-btn">&times;</a><h2>Felix, 35</h2><p>Chess master. Wine connoisseur.</p></div></div>
-  <div id="profile-7" class="modal"><div class="modal-content"><a href="#" class="close-btn">&times;</a><h2>Grace, 29</h2><p>Loves poetry, sunsets, and warm hugs.</p></div></div>
-  <div id="profile-8" class="modal"><div class="modal-content"><a href="#" class="close-btn">&times;</a><h2>Harry, 31</h2><p>Fitness geek and beach runner.</p></div></div>
-  <div id="profile-9" class="modal"><div class="modal-content"><a href="#" class="close-btn">&times;</a><h2>Isla, 26</h2><p>Creative soul with a camera.</p></div></div>
-  <div id="profile-10" class="modal"><div class="modal-content"><a href="#" class="close-btn">&times;</a><h2>Jack, 34</h2><p>Dog dad, gamer, and BBQ king.</p></div></div>
-  <div id="profile-11" class="modal"><div class="modal-content"><a href="#" class="close-btn">&times;</a><h2>Karen, 33</h2><p>Yoga lover and tea sipper.</p></div></div>
-  <div id="profile-12" class="modal"><div class="modal-content"><a href="#" class="close-btn">&times;</a><h2>Leo, 36</h2><p>Bookworm with a sarcastic streak.</p></div></div>
-  <div id="profile-13" class="modal"><div class="modal-content"><a href="#" class="close-btn">&times;</a><h2>Mia, 24</h2><p>Sweet, smart, and spontaneous.</p></div></div>
-  <div id="profile-14" class="modal"><div class="modal-content"><a href="#" class="close-btn">&times;</a><h2>Nick, 38</h2><p>Motorcycles, mystery novels, and mochas.</p></div></div>
-  <div id="profile-15" class="modal"><div class="modal-content"><a href="#" class="close-btn">&times;</a><h2>Olivia, 27</h2><p>Dancer and travel junkie.</p></div></div>
-  <div id="profile-16" class="modal"><div class="modal-content"><a href="#" class="close-btn">&times;</a><h2>Paul, 37</h2><p>Gentle giant with a green thumb.</p></div></div>
-
-  <!-- Signup Modal -->
-  <div id="login-modal" class="modal">
+  <!-- Login Modal (CSS :target compatible) -->
+  <div id="login-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="login-title">
     <div class="modal-content">
-      <a href="#" class="close-btn">&times;</a>
-      <h2>Login</h2>
+      <a href="#" class="close-btn" aria-label="Close">&times;</a>
+      <h2 id="login-title">Login to Wincked</h2>
       <form>
-        <input type="text" placeholder="Username" required>
-        <input type="password" placeholder="Password" required>
-        <button type="submit">Login</button>
+        <label for="login-username">Username</label>
+        <input type="text" id="login-username" name="login-username" required />
+
+        <label for="login-password">Password</label>
+        <input type="password" id="login-password" name="login-password" required />
+
+        <button type="submit">Log In</button>
       </form>
     </div>
   </div>
+
 
   <!-- Reviews Modal -->
   <div id="reviews-modal" class="modal">
@@ -115,16 +138,62 @@
   <footer>
     <p>© 2025 by R.E Espino – Student, Winc-winc Academy. All rights reserved.</p>
     <div class="social-icons">
-      <a href="https://www.facebook.com/reespino"><i class="fab fa-facebook"></i></a>
-      <a href="https://www.instagram.com/resquar3d"><i class="fab fa-instagram"></i></a>
-      <a href="https://x.com/resquar3d"><i class="fab fa-x-twitter"></i></a>
-      <a href="https://www.linkedin.com/in/reespino"><i class="fab fa-linkedin-in"></i></a>
-      <a href="https://www.youtube.com/@resquar3d534"><i class="fab fa-youtube"></i></a>
-      <a href="https://github.com/resquar3d"><i class="fa-brands fa-github"></i></a>
-      <a href="https://www.tiktok.com/@resquar3d"><i class="fab fa-tiktok"></i></a>
+      <a href="https://www.facebook.com/reespino" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+      <a href="https://www.instagram.com/resquar3d" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+      <a href="https://x.com/resquar3d" aria-label="X (formerly Twitter)"><i class="fab fa-x-twitter"></i></a>
+      <a href="https://www.linkedin.com/in/reespino" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+      <a href="https://www.youtube.com/@resquar3d534" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+      <a href="https://github.com/resquar3d" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+      <a href="https://www.tiktok.com/@resquar3d" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
     </div>
   </footer>
 
-  <script src="login.js"></script>
+  <script>
+    // Mobile-first burger toggle (progressive enhancement)
+    const burger = document.querySelector('.burger');
+    const nav = document.querySelector('#primary-nav');
+    if (burger && nav) {
+      burger.addEventListener('click', () => {
+        burger.classList.toggle('active');
+        const open = nav.classList.toggle('active');
+        burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+    }
+  </script>
+
+  <script type="module">
+    import { data } from './mockData.js';
+
+    const grid = document.querySelector('.profiles-grid');
+    const body = document.body;
+
+    data.forEach((user, i) => {
+      const id = `profile-${i + 1}`;
+      const imgSrc = `/Fixed/Images/${user.image}`;
+
+
+      const card = `
+        <a href="#${id}" class="profile-card ${i % 2 === 0 ? 'online' : 'offline'}"
+           data-age="${user.age}" data-gender="${user.gender}" data-location="${user.location}">
+          <img src="${imgSrc}" alt="${user.firstName}">
+          <h3>${user.firstName}, ${user.age}, ${user.gender}</h3>
+        </a>`;
+      grid.innerHTML += card;
+
+      const modal = `
+        <div id="${id}" class="modal">
+          <div class="modal-content">
+            <a href="#" class="close-btn">&times;</a>
+            <h2>${user.firstName}, ${user.age}</h2>
+            <p>Location: ${user.location}</p>
+            <p>Full Name: ${user.firstName} ${user.lastName}</p>
+          </div>
+        </div>`;
+      body.insertAdjacentHTML('beforeend', modal);
+    });
+  </script>
+
+    <script src="login.js"></script>
+
 </body>
 </html>
