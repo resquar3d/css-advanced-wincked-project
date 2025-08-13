@@ -1,5 +1,7 @@
 This Project is a more focused on mobile-first settings as requested.
 
+Comment @media or delete it to test if mobile works design works.
+
 Responsive design
 Is the layout designed mobile-first and optimized for all screen sizes?
 
