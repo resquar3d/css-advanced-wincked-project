@@ -1,82 +1,93 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Reviews - Wincked Date</title>
-  <link rel="stylesheet" href="styles.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Reviews – Wincked Date</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css"
+    integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  />
 </head>
 <body>
-  <header class="top-nav">
-    <h1 class="logo">Wincked</h1>
+  <!-- Header synced with index.html pattern (container-query aware) -->
+  <header class="top-nav site-header">
+    <div class="navbar-inner" role="navigation" aria-label="Primary">
+      <h1 class="logo">Wincked</h1>
 
-      <!-- Burger Menu Button -->
-    <div class="burger" onclick="this.classList.toggle('active'); document.querySelector('.nav-menu').classList.toggle('active')">
-      <div></div>
-      <div></div>
-      <div></div>
+      <!-- Burger (mobile baseline) -->
+      <button class="burger" aria-label="Toggle menu" aria-controls="primary-nav" aria-expanded="false">
+        <div></div>
+        <div></div>
+        <div></div>
+      </button>
+
+      <nav id="primary-nav" class="nav-menu" hidden aria-hidden="true">
+        <ul class="nav-list">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="people.html">People</a></li>
+          <li><a href="register.html">Register</a></li>
+          <li><a href="#login-modal">Login</a></li>
+          <li><a href="review.html" aria-current="page">Reviews</a></li>
+        </ul>
+      </nav>
     </div>
-
-    <nav class="nav-menu">
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="people.html">People</a></li>
-        <li><a href="register.html">Register</a></li>
-        <li><a href="#login-modal">Login</a></li>
-        <li><a href="review.html">Reviews</a></li>
-      </ul>
-    </nav>
   </header>
+
   <main>
     <div class="hero-text">
       <h2>Wincked Date</h2>
       <p>💗 Read and share your love story!</p>
     </div>
-    <div class="form-container">
-      <form>
-        <label for="reviewer-name">Your Name</label>
-        <input type="text" id="reviewer-name" name="reviewer-name" required>
 
-        <label for="review-message">Your Review</label>
-        <textarea id="review-message" name="review-message" required></textarea>
+    <!-- Form uses base mobile-first styles (no extra wrapper needed) -->
+    <form>
+      <label for="reviewer-name">Your Name</label>
+      <input type="text" id="reviewer-name" name="reviewer-name" required />
 
-        <button type="submit">Submit Review</button>
-      </form>
-    </div>
-    <div class="reviews-section">
-      <div class="review-card">
-        <h4>Jamie</h4>
-        <p>“Amazing experience! Found my match within days.”</p>
+      <label for="review-message">Your Review</label>
+      <textarea id="review-message" name="review-message" required></textarea>
+
+      <button type="submit">Submit Review</button>
+    </form>    <!-- Reviews grid uses existing .reviews-section styles -->
+    <section class="section">
+      <div class="reviews-section">
+        <div class="review-card">
+          <h4>Jamie</h4>
+          <p>“Amazing experience! Found my match within days.”</p>
+        </div>
+        <div class="review-card">
+          <h4>Alex</h4>
+          <p>“Fun, easy to use, and real people!”</p>
+        </div>
+        <div class="review-card">
+          <h4>Sam</h4>
+          <p>“Great design and intuitive layout. Love it!”</p>
+        </div>
+        <div class="review-card">
+          <h4>Disney</h4>
+          <p>“Romy designed it! Intuitive layout. It's awesome! but my brother won't let me!”</p>
+        </div>
       </div>
-      <div class="review-card">
-        <h4>Alex</h4>
-        <p>“Fun, easy to use, and real people!”</p>
-      </div>
-      <div class="review-card">
-        <h4>Sam</h4>
-        <p>“Great design and intuitive layout. Love it!”</p>
-      </div>
-      <div class="review-card">
-        <h4>Disney</h4>
-        <p>“Romy designed it! intuitive layout. It's awesome! but my brother won't let me!”</p>
-      </div>
-    </div>
-    </div>
+    </section>
   </main>
 
-   <!-- Login Modal -->
-   <div id="login-modal" class="modal">
+  <!-- Login Modal (CSS :target compatible) -->
+  <div id="login-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="login-title">
     <div class="modal-content">
-      <a href="#" class="close-btn">&times;</a>
-      <h2>Login to Wincked</h2>
+      <a href="#" class="close-btn" aria-label="Close">&times;</a>
+      <h2 id="login-title">Login to Wincked</h2>
       <form>
         <label for="login-username">Username</label>
-        <input type="text" id="login-username" name="login-username" required>
+        <input type="text" id="login-username" name="login-username" required />
 
         <label for="login-password">Password</label>
-        <input type="password" id="login-password" name="login-password" required>
+        <input type="password" id="login-password" name="login-password" required />
 
         <button type="submit">Log In</button>
       </form>
@@ -86,16 +97,30 @@
   <footer>
     <p>© 2025 by R.E Espino – Student, Winc-winc Academy. All rights reserved.</p>
     <div class="social-icons">
-      <a href="https://www.facebook.com/reespino"><i class="fab fa-facebook"></i></a>
-      <a href="https://www.instagram.com/resquar3d"><i class="fab fa-instagram"></i></a>
-      <a href="https://x.com/resquar3d"><i class="fab fa-x-twitter"></i></a>
-      <a href="https://www.linkedin.com/in/reespino"><i class="fab fa-linkedin-in"></i></a>
-      <a href="https://www.youtube.com/@resquar3d534"><i class="fab fa-youtube"></i></a>
-      <a href="https://github.com/resquar3d"><i class="fa-brands fa-github"></i></a>
-      <a href="https://www.tiktok.com/@resquar3d"><i class="fab fa-tiktok"></i></a>
+      <a href="https://www.facebook.com/reespino" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+      <a href="https://www.instagram.com/resquar3d" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+      <a href="https://x.com/resquar3d" aria-label="X (formerly Twitter)"><i class="fab fa-x-twitter"></i></a>
+      <a href="https://www.linkedin.com/in/reespino" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+      <a href="https://www.youtube.com/@resquar3d534" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+      <a href="https://github.com/resquar3d" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+      <a href="https://www.tiktok.com/@resquar3d" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
     </div>
   </footer>
-  
+
+  <script>
+    // Mobile-first burger toggle (same as index)
+    const burger = document.querySelector('.burger');
+    const nav = document.querySelector('#primary-nav');
+    if (burger && nav) {
+      burger.addEventListener('click', () => {
+        burger.classList.toggle('active');
+const open = nav.classList.toggle('active');
+nav.hidden = !open; // ensure hidden by default on small screens
+nav.setAttribute('aria-hidden', open ? 'false' : 'true');
+burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+    }
+  </script>
   <script src="login.js"></script>
 </body>
 </html>
