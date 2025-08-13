@@ -3,130 +3,115 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sign Up - Wincked Date</title>
+  <title>Wincked Date</title>
   <link rel="stylesheet" href="styles.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <script type="module" src="matchFinder.js" defer></script>
 </head>
 <body>
-  <header class="top-nav">
-    <h1 class="logo">Wincked</h1>
+  <!-- Header uses container queries in styles.css; base = mobile burger -->
+  <header class="top-nav site-header">
+    <div class="navbar-inner" role="navigation" aria-label="Primary">
+      <h1 class="logo">Wincked</h1>
 
-      <!-- Burger Menu Button -->
-    <div class="burger" onclick="this.classList.toggle('active'); document.querySelector('.nav-menu').classList.toggle('active')">
-      <div></div>
-      <div></div>
-      <div></div>
+      <!-- Burger (mobile baseline) -->
+      <button class="burger" aria-label="Toggle menu" aria-controls="primary-nav" aria-expanded="false">
+        <div></div>
+        <div></div>
+        <div></div>
+      </button>
+
+      <nav id="primary-nav" class="nav-menu">
+        <ul class="nav-list">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="people.html">People</a></li>
+          <li><a href="register.html">Register</a></li>
+          <li><a href="#login-modal">Login</a></li>
+          <li><a href="review.html">Reviews</a></li>
+        </ul>
+      </nav>
     </div>
-
-    <nav class="nav-menu">
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="people.html">People</a></li>
-        <li><a href="register.html">Register</a></li>
-        <li><a href="#login-modal">Login</a></li>
-        <li><a href="review.html">Reviews</a></li>
-      </ul>
-    </nav>
   </header>
   <main>
     <div class="hero-text">
-      <h2>Wincked Date</h2>
+      <h2>Winck A Date</h2>
       <p>💗 Register / Signup to find the perfect match suited for you!</p>
     </div>
     <div class="form-container">
-      <form>
-        <label for="name">Name :</label>
-        <input type="text" placeholder="Name" id="name" name="name" required>
+      <form id="matchForm">
+        <label for="firstName">First Name :</label>
+        <input type="text" id="firstName" required>
 
-        <label for="name">Username :</label>
-        <input type="text" placeholder="Prefered Username" id="name" name="name" required>
+        <label for="lastName">Last Name :</label>
+        <input type="text" id="lastName" required>
 
-        <label for="email">Email :</label>
-        <input type="email" placeholder="Email Address" id="email" name="email" required>
+        <label for="age">Your Age :</label>
+        <input type="number" id="age" min="18" required>
 
-        <label for="password">Password :</label>
-        <input type="password" placeholder="Password" id="password" name="password" required>
+        <label for="minAge">Minimum Age Interested In :</label>
+        <input type="number" id="minAge" min="18" required>
 
-        <label>Gender :</label>
-        <div class="radio-group">
-          <label><input type="radio" name="gender" value="male"> Male</label>
-          <label><input type="radio" name="gender" value="female"> Female</label>
-          <label><input type="radio" name="gender" value="other"> Other</label>
-          <label><input type="checkbox" name="gender_detail" value="nonbinary"> Non-binary / Other</label>
-        </div>
+        <label for="maxAge">Maximum Age Interested In :</label>
+        <input type="number" id="maxAge" min="18" required>
 
-        <label>Status :</label>
-        <div class="radio-group">
-          <label><input type="radio" name="status" value="single"> Single</label>
-          <label><input type="radio" name="status" value="divorced"> Divorced</label>
-          <label><input type="radio" name="status" value="separated"> Separated</label>
-        </div>
+        <label for="gender">Your Gender (M/F/X) :</label>
+        <input type="text" id="gender" maxlength="1" required>
 
-        <label>Looking For :</label>
-        <div class="radio-group">
-          <label><input type="radio" name="match_status" value="single"> Single</label>
-          <label><input type="radio" name="match_status" value="divorced"> Divorced</label>
-          <label><input type="radio" name="match_status" value="widow"> Widow</label>
-          <label><input type="radio" name="match_status" value="widower"> Widower</label>
-        </div>
+        <label for="genderInterest">Gender Interested In (M/F/X) :</label>
+        <input type="text" id="genderInterest" maxlength="1" required>
 
-        <label>Do you have a pet?</label>
-      <div class="radio-group">
-        <label><input type="radio" name="pet" value="yes"> Yes</label>
-        <label><input type="radio" name="pet" value="no"> No</label>
-      </div>
+        <label for="location">Location (rural/city) :</label>
+        <input type="text" id="location" required>
 
-      <label>Do you have children?</label>
-      <div class="radio-group">
-        <label><input type="checkbox" name="children" value="with"> Yes </label>
-        <label><input type="checkbox" name="children" value="without"> No </label>
-      </div>
-
-      <label for="num-children">Children :</label>
-      <select id="num-children" name="num-children">
-        <option value="0">0</option>
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-        <option value="5+">5+</option>
-      </select>
-
-        <button type="submit">Register</button>
+        <button type="submit">Find Matches</button>
       </form>
+      <div id="matchResults" style="margin-top:2rem;"></div>
     </div>
   </main>
-  <footer>
-    <p>© 2025 by R.E Espino – Student, Winc-winc Academy. All rights reserved.</p>
-    <div class="social-icons">
-      <a href="https://www.facebook.com/reespino"><i class="fab fa-facebook"></i></a>
-      <a href="https://www.instagram.com/resquar3d"><i class="fab fa-instagram"></i></a>
-      <a href="https://x.com/resquar3d"><i class="fab fa-x-twitter"></i></a>
-      <a href="https://www.linkedin.com/in/reespino"><i class="fab fa-linkedin-in"></i></a>
-      <a href="https://www.youtube.com/@resquar3d534"><i class="fab fa-youtube"></i></a>
-      <a href="https://github.com/resquar3d"><i class="fa-brands fa-github"></i></a>
-      <a href="https://www.tiktok.com/@resquar3d"><i class="fab fa-tiktok"></i></a>
-    </div>
-  </footer>
 
-  <!-- Login Modal -->
-  <div id="login-modal" class="modal">
+  <!-- Login Modal (CSS :target compatible) -->
+  <div id="login-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="login-title">
     <div class="modal-content">
-      <a href="#" class="close-btn">&times;</a>
-      <h2>Login to Wincked</h2>
+      <a href="#" class="close-btn" aria-label="Close">&times;</a>
+      <h2 id="login-title">Login to Wincked</h2>
       <form>
-        <label for="login-email">Email</label>
-        <input type="email" id="login-email" name="login-email" required>
+        <label for="login-username">Username</label>
+        <input type="text" id="login-username" name="login-username" required />
 
         <label for="login-password">Password</label>
-        <input type="password" id="login-password" name="login-password" required>
+        <input type="password" id="login-password" name="login-password" required />
 
         <button type="submit">Log In</button>
       </form>
     </div>
   </div>
 
+
+  <footer>
+    <p>© 2025 by R.E Espino – Student, Winc-winc Academy. All rights reserved.</p>
+    <div class="social-icons">
+      <a href="https://www.facebook.com/reespino" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+      <a href="https://www.instagram.com/resquar3d" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+      <a href="https://x.com/resquar3d" aria-label="X (formerly Twitter)"><i class="fab fa-x-twitter"></i></a>
+      <a href="https://www.linkedin.com/in/reespino" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+      <a href="https://www.youtube.com/@resquar3d534" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+      <a href="https://github.com/resquar3d" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+      <a href="https://www.tiktok.com/@resquar3d" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile-first burger toggle (progressive enhancement)
+    const burger = document.querySelector('.burger');
+    const nav = document.querySelector('#primary-nav');
+    if (burger && nav) {
+      burger.addEventListener('click', () => {
+        burger.classList.toggle('active');
+        const open = nav.classList.toggle('active');
+        burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+    }
+  </script>
   <script src="login.js"></script>
 </body>
 </html>
