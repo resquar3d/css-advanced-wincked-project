@@ -35,7 +35,7 @@ button, input, select, textarea { font: inherit; }
 /* ===== Background + readability layer ===== */
 body{
   color: var(--text);
-  background: url('/Images/ChatGPT\ Image\ 17\ mei\ 2025\,\ 17_28_18.png') center/cover no-repeat fixed;
+  background: url('/image/ChatGPT\ image\ 17\ mei\ 2025\,\ 17_28_18.png') center/cover no-repeat fixed;
   min-height: 100dvh;
   display: grid;
   grid-template-rows: auto 1fr auto; /* sticky footer without position:fixed */
@@ -235,3 +235,4 @@ body:has(.modal:target) { overflow: hidden; }
     form.grid-3{ grid-template-columns: repeat(3, 1fr); }
   }
 }
+
