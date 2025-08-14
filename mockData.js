@@ -1,0 +1,36 @@
+export const data = [
+  { firstName: "Alice", lastName: "de Menace", age: 28, gender: "F", location: "Rural Area" },
+  { firstName: "Ben", lastName: "Diesel", age: 30, gender: "M", location: "City Centrum Area" },
+  { firstName: "Chloe", lastName: "Vitton", age: 25, gender: "X", location: "Countryside Area" },
+  { firstName: "Daniel", lastName: "Hedgefield", age: 32, gender: "X", location: "Rural Area" },
+  { firstName: "Eva", lastName: "Nescence", age: 27, gender: "F", location: "Seaside Coast Area" },
+  { firstName: "Felix", lastName: "Ducat", age: 35, gender: "M", location: "City Centrum Area" },
+  { firstName: "Grace", lastName: "Keller", age: 29, gender: "F", location: "Countryside South Area" },
+  { firstName: "Harry", lastName: "Pottersson", age: 31, gender: "M", location: "Countryside East Area" },
+  { firstName: "Isla", lastName: "Bonita", age: 26, gender: "X", location: "City Centrum South Area" },
+  { firstName: "Jack", lastName: "deBoot", age: 34, gender: "M", location: "Bay Area" },
+  { firstName: "Karen", lastName: "Haren", age: 33, gender: "F", location: "Rural Countryside Area" },
+  { firstName: "Leo", lastName: "Tigero", age: 36, gender: "M", location: "South City Centrum Area" },
+  { firstName: "Mia", lastName: "Mamma", age: 24, gender: "X", location: "Rural Area" },
+  { firstName: "Nick", lastName: "Kelodeon", age: 38, gender: "M", location: "Bay Area" },
+  { firstName: "Olivia", lastName: "Newton", age: 27, gender: "F", location: "City Centrum South Area" },
+  { firstName: "Paul", lastName: "", age: 37, gender: "M", location: "Seaside Coast Area" }
+];
+export const people = [
+  { image: "profile1.jpg", name: "Alice de Menace" },
+  { image: "profile2.jpg", name: "Ben Diesel" },
+  { image: "profile3.jpg", name: "Chloe Vitton" },
+  { image: "profile4.jpg", name: "Daniel Hedgefield" },
+  { image: "profile5.jpg", name: "Eva Nescence" },
+  { image: "profile6.jpg", name: "Felix Ducat" },
+  { image: "profile7.jpg", name: "Grace Keller" },
+  { image: "profile8.jpg", name: "Harry Pottersson" },
+  { image: "profile9.jpg", name: "Isla Bonita" },
+  { image: "profile10.jpg", name: "Jack deBoot" },
+  { image: "profile11.jpg", name: "Karen Haren" },
+  { image: "profile12.jpg", name: "Leo Tigero" },
+  { image: "profile13.jpg", name: "Mia Mamma" },
+  { image: "profile14.jpg", name: "Nick Kelodeon" },
+  { image: "profile15.jpg", name: "Olivia Newton" },
+  { image: "profile16.jpg", name: "Paul" }
+];
